@@ -1,0 +1,16 @@
+<div class="container">
+
+  <div style="width: 100%">
+    <button mat-raised-button [disabled]="currentPage == 1" (click)="getPreviousPage()">Página Anterior</button>
+    <button mat-raised-button [disabled]="currentPage == 2" (click)="getNextPage()">Página Siguiente</button>
+  </div>
+
+  <mat-card class="card" *ngFor="let user of usersInPage">
+    <mat-card-header>
+      <img *ngIf="user.avatar" mat-card-avatar [src]="user.avatar" alt="Avatar of the user"/>
+      <mat-card-title>{{user.email}}</mat-card-title>
+      <mat-card-subtitle>{{user.first_name + " " + user.last_name}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+
+</div>
