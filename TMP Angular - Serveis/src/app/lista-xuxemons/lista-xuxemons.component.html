@@ -1,9 +1,51 @@
-<div class="container">
-  <mat-card class="card" >
-    
-      <div *ngFor="let xuxemon of xuxemons">
-        {{ xuxemon.name }} - {{ xuxemon.type }}
+<div *ngIf="isAdmin" class="container">
+  <div class="card" >
+    <h1>Admin</h1>
+    <div class="createXuxemon">
+      <button *ngIf="!creatingXuxe" class="btn btn-primary" (click)="changeCreatingXuxe()">+ Crear Xuxemonon</button>
+      <form *ngIf="creatingXuxe" (ngSubmit)="create()" [formGroup]="createXuxeForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" formControlName="name" >
+      
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" formControlName="type" >
+      
+        <button type="submit" [disabled]="createXuxeForm.invalid">Submit</button>
+      </form>
+    </div>
+      <div  *ngFor="let xuxemon of xuxemons">
+        <ul *ngIf="editing!=xuxemon.id">
+          <li><img src="../../assets/xuxemons/{{ xuxemon.img }}" alt=""></li>
+          <li>{{ xuxemon.name }}</li>
+          <li>{{ xuxemon.type }}</li>
+          <ul>
+            <li><button (click)="delete(xuxemon.id)">Delete</button></li>
+            <li><button (click)="changeEdit(xuxemon.id)">Edit</button></li>
+          </ul>
+        </ul>
+        <form *ngIf="editing==xuxemon.id" (ngSubmit)="edit(xuxemon.id)" #xuxemonForm="ngForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" [(ngModel)]="xuxemon.name" >
+        
+          <label for="type">Type:</label>
+          <input type="text" id="type" name="type" [(ngModel)]="xuxemon.type" >
+        
+          <button type="submit" [disabled]="xuxemonForm.invalid">Submit</button>
+        </form>
       </div>
-  </mat-card>
-
+    </div>
+</div>
+<div *ngIf="!isAdmin" class="container">
+  <div class="card" >
+      <div class="catch">
+        <button class="btn btn-primary" (click)="catchRandom()">Captura random</button>
+      </div>
+      <div  *ngFor="let xuxemon of xuxemons">
+        <ul>
+          <li><img src="../../assets/xuxemons/{{ xuxemon.img }}" alt=""></li>
+          <li>{{ xuxemon.name }}</li>
+          <li>{{ xuxemon.type }}</li>
+        </ul>
+      </div>
+  </div>
 </div>

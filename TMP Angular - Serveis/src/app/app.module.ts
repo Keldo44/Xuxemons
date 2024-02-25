@@ -15,10 +15,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatCardModule} from "@angular/material/card";
-import { RegisterComponentComponent } from './register-component/register-component.component';
+import { RegisterComponentComponent } from './auth/register-component/register-component.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponentComponent } from './login-component/login-component.component';
+import { LoginComponentComponent } from './auth/login-component/login-component.component';
 import { ListaXuxemonsComponent } from './lista-xuxemons/lista-xuxemons.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ListaXuxemonsComponent } from './lista-xuxemons/lista-xuxemons.componen
     ListaUsuariosComponent,
     RegisterComponentComponent,
     LoginComponentComponent,
-    ListaXuxemonsComponent
+    ListaXuxemonsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

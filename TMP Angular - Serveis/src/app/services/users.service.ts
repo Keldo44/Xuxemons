@@ -3,11 +3,58 @@ import { map, Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Xuxemon } from '../../models/xuxemon.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class UsersService {
+  catchXuxemonRand() {
+    const token = localStorage.getItem('token') || 'default';
+
+    // Set up the params with the token
+    const params = `?token=${token}`;
+    
+    // Make the GET request with params
+    //console.log(environment.serverUrl,'/xuxemons/',params);
+    return this.http.post(`${environment.serverUrl}/xuxemons/catch/${params}`, null);
+  }
+  createXuxemon(xuxemon:Xuxemon) {
+    const token = localStorage.getItem('token') || 'default';
+
+    // Set up the params with the token
+    const params = `?token=${token}&name=${xuxemon.name}&type=${xuxemon.type}`;
+    
+    // Make the GET request with params
+    //console.log(environment.serverUrl,'/xuxemons/',params);
+    return this.http.post(`${environment.serverUrl}/xuxemons/${params}`, null);
+    
+  }
+  
+  editXuxemon(xuxemon: { id?: number; name: any; type: any; }) {
+
+
+    const token = localStorage.getItem('token') || 'default';
+
+    // Set up the params with the token
+    const params = `?token=${token}&name=${xuxemon.name}&type=${xuxemon.type}`;
+    
+    // Make the GET request with params
+    //console.log(environment.serverUrl,'/xuxemons/',params);
+    return this.http.put(`${environment.serverUrl}/xuxemons/${xuxemon.id}${params}`, null);
+    //return this.http.put("http://localhost:8000/xuxemons/4?token=wcekhebcuewjvnbhowievnoewilvjnowilkvjnoewlkvnjlkewvnkvjlnvowik&name=Keldo&type=fire",null);
+  }
+  deleteXuxemon(id: number) {
+    // Get the token from local storage, use 'default' if it's not present
+    const token = localStorage.getItem('token') || 'default';
+
+    // Set up the params with the token
+    const params = new HttpParams().set('token', token);
+
+    // Make the GET request with params
+    return this.http.delete(`${environment.serverUrl}/xuxemons/${id}`, { params });
+  }
   constructor(private http: HttpClient) {}
   /*registerUser(email: string, password: string): Observable<any> {
     return this.http.post('https://reqres.in/api/register', {
@@ -15,6 +62,9 @@ export class UsersService {
       password: password,
     });
   }*/
+  
+ 
+
   registerUser(email: string, password: string): Observable<any> {
     const params = "?email=" + email + "&name=keldo&password=" + password;
     return this.http.post('http://localhost:8000/register'+params, {
@@ -52,12 +102,36 @@ export class UsersService {
         })
       );
   }
-  getXuxemons(): Observable<Xuxemon[]> {
-    // Ejemplo de HttpHeaders
+  getXuxedex(): Observable<Xuxemon[]> {
+   // Get the token from local storage, use 'default' if it's not present
+   const token = localStorage.getItem('token') || 'default';
 
-    return this.http
-      .get<Xuxemon[]>('http://127.0.0.1:8000/xuxemons', {});
+   // Set up the params with the token
+   const params = new HttpParams().set('token', token);
+
+   // Make the GET request with params
+   return this.http.get<Xuxemon[]>(`${environment.serverUrl}/xuxedex`, { params });
+  }
+  getXuxemons(): Observable<Xuxemon[]> {
+    // Get the token from local storage, use 'default' if it's not present
+   const token = localStorage.getItem('token') || 'default';
+
+   // Set up the params with the token
+   const params = new HttpParams().set('token', token);
+
+   // Make the GET request with params
+   return this.http.get<Xuxemon[]>(`${environment.serverUrl}/xuxemons`, { params });
+  }
+  
+ 
+
+  getUserRole(): Observable<string> {
+    const token = localStorage.getItem('token') || 'default';
+
+    // Set up the params with the token
+    const params = new HttpParams().set('token', token);
+
+    return this.http.get<string>(`${environment.serverUrl}/role`, { params });
   }
 }
-
 

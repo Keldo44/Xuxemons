@@ -1,0 +1,4 @@
+<mat-toolbar color="primary">
+    <button mat-raised-button class="nav-button" routerLink="{{action}}" routerLinkActive="router-link-active" (click)="changeAction()"> {{action | uppercase}}</button>
+</mat-toolbar>
+<router-outlet></router-outlet>

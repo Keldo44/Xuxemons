@@ -33,6 +33,11 @@ Route::middleware('cors')->group(function () {
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::post('register', [LoginController::class, 'register'])->name('register');
     Route::resource('xuxemons', XuxemonController::class);
+    Route::post('xuxemons/catch',[XuxemonController::class, 'catchRand']);
+
+    Route::get('xuxedex', [XuxemonController::class, 'getXuxedex']);
+
+    Route::get('role', [LoginController::class, 'getRole']);
 });
 
 

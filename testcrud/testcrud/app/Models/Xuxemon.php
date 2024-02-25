@@ -33,6 +33,9 @@ class Xuxemon extends Model
      */
     protected $fillable = ['name','type'];
 
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'pokedex');
+    }
 
 }
