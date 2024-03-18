@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\EntrenadorController;
+use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\XuxemonController;
-
+use App\Http\Controllers\pcController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,6 +46,17 @@ Route::middleware('cors')->group(function () {
     Route::post('register', [LoginController::class, 'register'])->name('register');
 
     Route::get('xuxemons', [XuxemonController::class, 'index']);
+    Route::post('xuxemons', [XuxemonController::class, 'store']);
+    Route::delete('xuxemons/{id}', [XuxemonController::class, 'destroy']);
+    Route::put('xuxemons/{id}', [XuxemonController::class, 'update']);
+    Route::post('xuxemons/catch',[XuxemonController::class, 'catchRand']);
+    
+    Route::get('items',[ItemsController::class, 'index']);
+
+    Route::get('xuxedex', [XuxemonController::class, 'getXuxedex']);
+    Route::get('mypc', [pcController::class, 'getMyPC']);
+    Route::get('role', [LoginController::class, 'getRole']);
+   
 });
 
 // Routes with Sanctum authentication middleware

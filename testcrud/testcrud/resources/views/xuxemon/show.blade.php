@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $xuxemon->name ?? "{{ __('Show') Xuxemon" }}
+    {{ $xuxemon->name ?? "{{ __('Show Xuxemon') }}"
 @endsection
 
 @section('content')

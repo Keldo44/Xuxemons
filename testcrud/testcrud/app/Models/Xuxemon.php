@@ -21,6 +21,7 @@ class Xuxemon extends Model
     
     static $rules = [
 		'name' => 'required',
+    'hp',
 		'type' => 'required',
     ];
 
@@ -33,6 +34,9 @@ class Xuxemon extends Model
      */
     protected $fillable = ['name','type'];
 
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'pokedex');
+    }
 
 }

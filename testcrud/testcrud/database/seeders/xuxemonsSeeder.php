@@ -76,6 +76,9 @@ class xuxemonsSeeder extends Seeder
             Xuxemon::create([
                 'name' => $name,
                 'type' => $type,
+                'hp' => 100,
+                'evo1' => 3,
+                'evo2' => 5,
             ]);
         }
     }

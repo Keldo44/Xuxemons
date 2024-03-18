@@ -1,0 +1,55 @@
+Table: pokedex
+| Column        | Type                   | Key                   |
+|---------------|------------------------|-----------------------|
+| id            | bigint(20) unsigned    | Primary Key           |
+| user_id       | bigint(20) unsigned    | Foreign Key (users)   |
+| xuxemon_id    | bigint(20) unsigned    | Foreign Key (xuxemons)|
+| created_at    | timestamp              |                       |
+| updated_at    | timestamp              |                       |
+
+Table: entrenador
+| Column        | Type                   | Key                 |
+|---------------|------------------------|---------------------|
+| id            | bigint(20) unsigned    | Primary Key         |
+| nombre        | varchar(255)           |                     |
+| fechaN        | date                   |                     |
+| ciudad        | varchar(255)           |                     |
+| idEntrenador  | varchar(255)           |                     |
+| nick          | varchar(255)           |                     |
+| created_at    | timestamp              |                     |
+| updated_at    | timestamp              |                     |
+
+Table: users
+| Column            | Type                   | Key                 |
+|-------------------|------------------------|---------------------|
+| id                | bigint(20) unsigned    | Primary Key         |
+| name              | varchar(255)           |                     |
+| email             | varchar(255)           |                     |
+| email_verified_at | timestamp              |                     |
+| password          | varchar(255)           |                     |
+| role              | varchar(255)           |                     |
+| session_token     | varchar(255)           |                     |
+| remember_token    | varchar(100)           |                     |
+| created_at        | timestamp              |                     |
+| updated_at        | timestamp              |                     |
+
+Table: xuxemons
+| Column        | Type                   | Key                 |
+|---------------|------------------------|---------------------|
+| id            | bigint(20) unsigned    | Primary Key         |
+| name          | varchar(255)           |                     |
+| type          | varchar(255)           |                     |
+| created_at    | timestamp              |                     |
+| updated_at    | timestamp              |                     |
+
+Table: pc
+
+| Column           | Type                  | Key                   |
+| ---------------- | --------------------- | ----------------------|
+| id               | bigint(20) unsigned   | Primary Key           |
+| user_id          | bigint(20) unsigned   | Foreign Key (users)   |
+| xuxemon_id       | bigint(20) unsigned   | Foreign Key (xuxemons)|
+| updated_at       | timestamp             |                       |
+| hp_remaining     | int(11)               |                       |
+| candies          | int(11)               |                       |
+| created_at       | timestamp             |                       |

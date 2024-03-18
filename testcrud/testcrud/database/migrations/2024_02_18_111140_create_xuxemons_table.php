@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('xuxemons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('hp');
+            $table->integer('evo1')->default(3);
+            $table->integer('evo2')->default(5);
             $table->string('type');
             $table->timestamps();
         });

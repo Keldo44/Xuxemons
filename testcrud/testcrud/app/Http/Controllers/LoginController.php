@@ -33,9 +33,11 @@ class LoginController extends Controller
             // Additional checks or actions can be performed here before updating user data
 
             // Uncomment the following line if you want to update user data
-            // $user->update($request->all());
+            $sessionToken = Str::random(60);
+            $user->session_token = $sessionToken;
+            $user->save();  
 
-            return response()->json(['message' => 'Inicio de sesión exitoso'], 200);
+            return response()->json(['message' => 'Inicio de sesión exitoso','session_token' => $sessionToken], 200);
 
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'Usuario no encontrado'], 404);
@@ -66,4 +68,17 @@ class LoginController extends Controller
             return response()->json(['error' => 'Error al registrar el usuario'.$e], 500);
         }
     }
+
+    public function getRole(Request $request){
+        
+
+        $user = User::where('session_token', $request->token)->first();
+        if ($user === null) {
+            // User not found, return a specific response
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    
+        return response()->json(['role' => $user->role], 200);
+    }
+    
 }

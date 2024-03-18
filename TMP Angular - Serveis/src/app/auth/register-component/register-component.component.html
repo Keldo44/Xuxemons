@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <button mat-raised-button class="nav-button" routerLink="/login" routerLinkActive="router-link-active" >LOGIN</button>
+</mat-toolbar>
+<form [formGroup]="registerForm" (ngSubmit)="enviarRegistro()">
+    <label> Email </label>
+    <input type="text" formControlName="email" >
+
+    <label> Password </label>
+    <input type="password" formControlName="password">
+
+    <label> RepeatPassword </label>
+    <input type="password" formControlName="rpassword">
+
+    <button type="submit" [disabled]="!registerForm.valid">Enviar</button>
+</form>
+<p>{{ result }}</p>

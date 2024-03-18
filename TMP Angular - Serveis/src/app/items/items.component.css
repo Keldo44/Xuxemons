@@ -1,0 +1,14 @@
+
+*{
+    background: transparent;
+}
+.list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card{
+    width: calc(100% / 4 - 30px * 3 / 4);
+    
+    position: relative;
+}

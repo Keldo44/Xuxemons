@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeed::class);
         $this->call(EntrenadorSeeder::class);
-        $this->call(PokemonSeeder::class);
         $this->call(xuxemonsSeeder::class);
+        $this->call(ItemSeeder::class);
     }
 }
